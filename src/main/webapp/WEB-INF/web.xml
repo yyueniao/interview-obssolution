@@ -11,7 +11,11 @@
     <servlet-name>ListStudentsServlet</servlet-name>
     <servlet-class>ListStudentsServlet</servlet-class>
   </servlet>
-
+  <servlet>
+    <servlet-name>listStudents</servlet-name>
+    <jsp-file>/students.jsp</jsp-file>
+  </servlet>
+  
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/api/login</url-pattern>
@@ -19,5 +23,9 @@
   <servlet-mapping>
     <servlet-name>ListStudentsServlet</servlet-name>
     <url-pattern>/api/student/list</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>listStudents</servlet-name>
+    <url-pattern>/students</url-pattern>
   </servlet-mapping>
 </web-app>
