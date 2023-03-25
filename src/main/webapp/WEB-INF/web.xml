@@ -2,12 +2,22 @@
 
 <web-app>
   <display-name>Obs Solution Assignment</display-name>
+
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>LoginServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>ListStudentsServlet</servlet-name>
+    <servlet-class>ListStudentsServlet</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/login</url-pattern>
+    <url-pattern>/api/login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ListStudentsServlet</servlet-name>
+    <url-pattern>/api/student/list</url-pattern>
   </servlet-mapping>
 </web-app>
