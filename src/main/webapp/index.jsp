@@ -105,7 +105,7 @@
 				})
 					.then((response) => {
 						if (response.status === 200) {
-							window.location.href += "/students";
+							window.location.href += "students";
 						} else {
 							alert("Invalid username or password.");
 						}
