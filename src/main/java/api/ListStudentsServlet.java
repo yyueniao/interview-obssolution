@@ -1,3 +1,5 @@
+package api;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entity.Student;
 import java.io.IOException;
@@ -19,7 +21,7 @@ public class ListStudentsServlet extends HttpServlet {
 
     ObjectMapper mapper = new ObjectMapper();
     String responseBodyString = mapper.writeValueAsString(students);
-    
+
     resp.setContentType("application/json");
     resp.setCharacterEncoding("UTF-8");
 

@@ -5,11 +5,11 @@
 
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>LoginServlet</servlet-class>
+    <servlet-class>api.LoginServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>ListStudentsServlet</servlet-name>
-    <servlet-class>ListStudentsServlet</servlet-class>
+    <servlet-class>api.ListStudentsServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>listStudents</servlet-name>
