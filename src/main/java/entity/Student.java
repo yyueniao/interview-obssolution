@@ -11,6 +11,11 @@ public class Student {
   private int mark;
 
   /**
+   * We need default constructor for Object Mapper.
+   */
+  public Student() {}
+
+  /**
    * Constructor of student.
    *
    * @param studentId id of the student.
