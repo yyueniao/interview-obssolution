@@ -1,8 +1,21 @@
-<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
-
-<web-app>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee"
+  xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd
+                      http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+  id="WebApp_ID" version="5.0">
   <display-name>Obs Solution Assignment</display-name>
 
+  <!-- View -->
+  <servlet>
+    <servlet-name>LoginPageServlet</servlet-name>
+    <servlet-class>page.LoginPageServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>StudentsPageServlet</servlet-name>
+    <servlet-class>page.StudentsPageServlet</servlet-class>
+  </servlet>
+
+  <!-- Server -->
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>api.LoginServlet</servlet-class>
@@ -11,11 +24,18 @@
     <servlet-name>ListStudentsServlet</servlet-name>
     <servlet-class>api.ListStudentsServlet</servlet-class>
   </servlet>
-  <servlet>
-    <servlet-name>listStudents</servlet-name>
-    <jsp-file>/students.jsp</jsp-file>
-  </servlet>
-  
+
+  <!-- View -->
+  <servlet-mapping>
+    <servlet-name>LoginPageServlet</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>StudentsPageServlet</servlet-name>
+    <url-pattern>/students</url-pattern>
+  </servlet-mapping>
+
+  <!-- Server -->
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/api/login</url-pattern>
@@ -23,9 +43,5 @@
   <servlet-mapping>
     <servlet-name>ListStudentsServlet</servlet-name>
     <url-pattern>/api/student/list</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>listStudents</servlet-name>
-    <url-pattern>/students</url-pattern>
   </servlet-mapping>
 </web-app>
