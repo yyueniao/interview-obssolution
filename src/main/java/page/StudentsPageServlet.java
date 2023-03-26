@@ -9,7 +9,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -34,8 +37,13 @@ public class StudentsPageServlet extends HttpServlet {
       studentsString,
       new TypeReference<List<Student>>() {}
     );
+    Map<String, List<Student>> departmentStudentsMap = groupStudentsByDepartment(
+      students
+    );
+
     request.setAttribute("userId", request.getParameter("userId"));
-    request.setAttribute("students", students);
+    request.setAttribute("departmentStudentsMap", departmentStudentsMap);
+    request.setAttribute("departments", departmentStudentsMap.keySet());
 
     RequestDispatcher dispatcher = request.getRequestDispatcher(
       "/students.jsp"
@@ -58,5 +66,21 @@ public class StudentsPageServlet extends HttpServlet {
       responseBuilder.append(line);
     }
     return responseBuilder.toString();
+  }
+
+  private Map<String, List<Student>> groupStudentsByDepartment(
+    List<Student> students
+  ) {
+    Map<String, List<Student>> map = new LinkedHashMap<String, List<Student>>();
+    for (Student student : students) {
+      String department = student.getDepartment();
+      List<Student> curStudentList = map.get(department);
+      if (curStudentList == null) {
+        curStudentList = new ArrayList<Student>();
+      }
+      curStudentList.add(student);
+      map.put(department, curStudentList);
+    }
+    return map;
   }
 }
