@@ -64,6 +64,7 @@
 				background-color: #45a049;
 			}
 		</style>
+		<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	</head>
 	<body>
 		<div id="container">
@@ -85,12 +86,19 @@
 		</div>
 
 		<script>
-			const loginForm = document.getElementById("loginForm");
-			loginForm.addEventListener("submit", function (event) {
-				event.preventDefault();
+			function validateForm(userId, password) {
+				if (userId == "") {
+					alert("User Id is required");
+					return false;
+				}
+				if (password == "") {
+					alert("Password is required");
+					return false;
+				}
+				return true;
+			}
 
-				const userId = document.getElementById("userId").value;
-				const password = document.getElementById("password").value;
+			function login(userId, password) {
 				const url = "api/login";
 
 				fetch(url, {
@@ -113,6 +121,20 @@
 					.catch((error) => {
 						console.error(error);
 					});
+			}
+
+			$(document).ready(function () {
+				$("#loginForm").submit(function (event) {
+					event.preventDefault();
+					const userId = $("#userId").val();
+					const password = $("#password").val();
+
+					const isValid = validateForm(userId, password);
+					if (!isValid) {
+						return;
+					}
+					login(userId, password);
+				});
 			});
 		</script>
 	</body>
