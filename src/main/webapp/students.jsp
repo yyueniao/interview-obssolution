@@ -15,7 +15,7 @@
 					<th>Department</th>
 					<th>Student Id</th>
 					<th>Marks</th>
-					<th>Pass</th>
+					<th>Pass %</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -25,6 +25,12 @@
 				/>
 				<c:forEach items="${requestScope.departments}" var="department">
 					<c:set var="students" value="${map.get(department)}" />
+					<c:set var="passCount" value="${0}" />
+					<c:forEach items="${students}" var="student">
+						<c:if test="${student.mark >= requestScope.passMark}">
+							<c:set var="passCount" value="${passCount+1}" />
+						</c:if>
+					</c:forEach>
 					<c:set var="isFirst" value="${true}" />
 					<c:forEach items="${students}" var="student">
 						<tr>
@@ -32,7 +38,6 @@
 								<td rowspan="${students.size()}">
 									${student.department}
 								</td>
-								<c:set var="isFirst" value="${false}" />
 							</c:if>
 							<td>
 								<a
@@ -42,13 +47,13 @@
 								>
 							</td>
 							<td>${student.mark}</td>
-							<td>
-								<c:set
-									var="passPercent"
-									value="${100.0 * student.mark}"
-								/><c:out value="${passPercent}" />%
-							</td>
+							<c:if test="${isFirst}">
+								<td rowspan="${students.size()}">
+									${100.0 * passCount / students.size()}
+								</td>
+							</c:if>
 						</tr>
+						<c:set var="isFirst" value="${false}" />
 					</c:forEach>
 				</c:forEach>
 			</tbody>

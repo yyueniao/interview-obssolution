@@ -24,6 +24,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class StudentsPageServlet extends HttpServlet {
 
+  private static final int PASS_MARK = 60;
+
   /**
    * Getting students page ui.
    */
@@ -44,6 +46,7 @@ public class StudentsPageServlet extends HttpServlet {
     request.setAttribute("userId", request.getParameter("userId"));
     request.setAttribute("departmentStudentsMap", departmentStudentsMap);
     request.setAttribute("departments", departmentStudentsMap.keySet());
+    request.setAttribute("passMark", PASS_MARK);
 
     RequestDispatcher dispatcher = request.getRequestDispatcher(
       "/students.jsp"
